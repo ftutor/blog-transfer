@@ -1,9 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.myblog.model</groupId>
+  <parent>
+		 <groupId>com.myblog.transfer</groupId>
+    	 <artifactId>simple-parent</artifactId>
+    	 <version>1.0</version>
+  </parent>
   <artifactId>blog-model</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <name>Blog Model</name>
+  <packaging>jar</packaging>
    <properties>
         <mysql-version>5.1.18</mysql-version>
          <liquibase-version>3.0.5</liquibase-version>
@@ -14,10 +18,39 @@
             <artifactId>mysql-connector-java</artifactId>
             <!-- Replace with the version of the MySQL driver you want to use -->
             <version>${mysql-version}</version>
-        </dependency>
+     	 </dependency>
+        
+     	 <dependency>
+  			<groupId>org.jooq</groupId>
+  			<artifactId>jooq</artifactId>
+  			<version>3.2.2</version>
+		</dependency>
+		<dependency>
+  			<groupId>org.jooq</groupId>
+  			<artifactId>jooq-meta</artifactId>
+  			<version>3.2.2</version>
+		</dependency>
+		<dependency>
+  			<groupId>org.jooq</groupId>
+  			<artifactId>jooq-codegen</artifactId>
+ 			 <version>3.2.2</version>
+		</dependency>
     </dependencies>
     
      <build>
+      <!-- The resources element will replace available properties in all matching
+             resources. We use this to provide H2 connection configuration to various
+           configuration elements -->
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes> 
+            </resource>
+         
+        </resources>
       <plugins>
 		<plugin>
 		   <groupId>org.liquibase</groupId>
@@ -34,7 +67,101 @@
 			   </goals>
 			 </execution>
 		   </executions>
+		</plugin>
+		 <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0-alpha-2</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>src/main/resources/liquibase/liquibase.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+        </plugin>
+		<plugin>
+		  <!-- Specify the maven code generator plugin -->
+		  <groupId>org.jooq</groupId>
+		  <artifactId>jooq-codegen-maven</artifactId>
+		  <version>3.2.2</version>
+		
+		  <!-- The plugin should hook into the generate goal -->
+		  <executions>
+		    <execution>
+		      <goals>
+		        <goal>generate</goal>
+		      </goals>
+		 
+		  <!-- Specify the plugin configuration.
+		       The configuration format is the same as for the standalone code generator -->
+		  <configuration>
+		
+		    <!-- JDBC connection parameters -->
+		    <jdbc>
+		      <driver>${driver}</driver>
+			  <url>${url}</url>
+			  <user>${username}</user>
+			  <password>${password}</password>
+		    </jdbc>
+		
+		    <!-- Generator parameters -->
+		    <generator>
+		      <name>org.jooq.util.DefaultGenerator</name>
+		      <database>
+		        <name>org.jooq.util.mysql.MySQLDatabase</name>
+		        <includes>.*</includes>
+		        <excludes></excludes>
+		        <inputSchema>blog</inputSchema>
+		        <outputSchema>blog</outputSchema>
+		      </database>
+		      <generate>
+                 <relations>true</relations>
+                 <deprecated>false</deprecated>
+                 <instanceFields>true</instanceFields>
+              </generate>
+		      <target>
+		        <packageName>com.myblog.schema</packageName>
+		        <directory>${project.build.directory}/generated-sources/jooq</directory>
+		      </target>
+		    </generator>
+		   </configuration>
+		  </execution>
+		 </executions>
+		  <dependencies>
+			 <dependency>
+	            <groupId>mysql</groupId>
+	            <artifactId>mysql-connector-java</artifactId>
+	            <!-- Replace with the version of the MySQL driver you want to use -->
+	            <version>${mysql-version}</version>
+	     	 </dependency>
+     	 </dependencies>
 		</plugin> 	
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/jooq</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
       </plugins>
     </build>
 </project>

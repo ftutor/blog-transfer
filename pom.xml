@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+	<!--<properties>
+		<project-groupId>myblog</project-groupId>
+		<project-version>0.0.1-SNAPSHOT</project-version>
+   </properties>  -->
+    <groupId>com.myblog.transfer</groupId>
+    <artifactId>simple-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <name>Multi Chapter Simple Parent Project</name>
+  
+  <modules>
+    
+     <module>blog-model</module>
+	  <module>blog-service</module>
+   </modules>
+ </project>
