@@ -19,3 +19,5 @@ hint
 field string --fieldName username 
 perform package
 perform eclipse
+q
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-18 15:54:31
