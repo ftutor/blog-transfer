@@ -1,0 +1,21 @@
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-18 13:14:50
+hint
+project --topLevelPackage com.myblog.transfer
+hint
+jpa setup --provider HIBERNATE --database MYSQL 
+hint
+hint web mvc
+web mvc setup
+web mvc all --package ~.web
+perform package
+perform eclipse
+// [failed] selenium test --controller ~.web.TestController
+perform tests
+perform package
+perform eclipse
+hint
+entity jpa --class ~.Timer --testAutomatically 
+hint
+field string --fieldName username 
+perform package
+perform eclipse

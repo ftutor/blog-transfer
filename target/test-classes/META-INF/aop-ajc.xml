@@ -1,0 +1,9 @@
+<aspectj>
+<aspects>
+<aspect name="com.myblog.transfer.TimerDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="com.myblog.transfer.TimerIntegrationTest_Roo_Configurable"/>
+<aspect name="com.myblog.transfer.TimerIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="com.myblog.transfer.TimerDataOnDemand_Roo_Configurable"/>
+</aspects>
+</aspectj>
+
