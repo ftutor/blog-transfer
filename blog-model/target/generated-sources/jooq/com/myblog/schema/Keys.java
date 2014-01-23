@@ -18,6 +18,7 @@ public class Keys {
 	// IDENTITY definitions
 	// -------------------------------------------------------------------------
 
+	public static final org.jooq.Identity<com.myblog.schema.tables.records.TimerRecord, java.lang.Long> IDENTITY_TIMER = Identities0.IDENTITY_TIMER;
 
 	// -------------------------------------------------------------------------
 	// UNIQUE and PRIMARY KEY definitions
@@ -25,6 +26,7 @@ public class Keys {
 
 	public static final org.jooq.UniqueKey<com.myblog.schema.tables.records.DatabasechangelogRecord> KEY_DATABASECHANGELOG_PRIMARY = UniqueKeys0.KEY_DATABASECHANGELOG_PRIMARY;
 	public static final org.jooq.UniqueKey<com.myblog.schema.tables.records.DatabasechangeloglockRecord> KEY_DATABASECHANGELOGLOCK_PRIMARY = UniqueKeys0.KEY_DATABASECHANGELOGLOCK_PRIMARY;
+	public static final org.jooq.UniqueKey<com.myblog.schema.tables.records.TimerRecord> KEY_TIMER_PRIMARY = UniqueKeys0.KEY_TIMER_PRIMARY;
 	public static final org.jooq.UniqueKey<com.myblog.schema.tables.records.UserRecord> KEY_USER_PRIMARY = UniqueKeys0.KEY_USER_PRIMARY;
 	public static final org.jooq.UniqueKey<com.myblog.schema.tables.records.UserBlogRecord> KEY_USER_BLOG_PRIMARY = UniqueKeys0.KEY_USER_BLOG_PRIMARY;
 
@@ -38,9 +40,14 @@ public class Keys {
 	// [#1459] distribute members to avoid static initialisers > 64kb
 	// -------------------------------------------------------------------------
 
+	private static class Identities0 extends org.jooq.impl.AbstractKeys {
+		public static org.jooq.Identity<com.myblog.schema.tables.records.TimerRecord, java.lang.Long> IDENTITY_TIMER = createIdentity(com.myblog.schema.tables.Timer.TIMER, com.myblog.schema.tables.Timer.TIMER.ID);
+	}
+
 	private static class UniqueKeys0 extends org.jooq.impl.AbstractKeys {
 		public static final org.jooq.UniqueKey<com.myblog.schema.tables.records.DatabasechangelogRecord> KEY_DATABASECHANGELOG_PRIMARY = createUniqueKey(com.myblog.schema.tables.Databasechangelog.DATABASECHANGELOG, com.myblog.schema.tables.Databasechangelog.DATABASECHANGELOG.ID, com.myblog.schema.tables.Databasechangelog.DATABASECHANGELOG.AUTHOR, com.myblog.schema.tables.Databasechangelog.DATABASECHANGELOG.FILENAME);
 		public static final org.jooq.UniqueKey<com.myblog.schema.tables.records.DatabasechangeloglockRecord> KEY_DATABASECHANGELOGLOCK_PRIMARY = createUniqueKey(com.myblog.schema.tables.Databasechangeloglock.DATABASECHANGELOGLOCK, com.myblog.schema.tables.Databasechangeloglock.DATABASECHANGELOGLOCK.ID);
+		public static final org.jooq.UniqueKey<com.myblog.schema.tables.records.TimerRecord> KEY_TIMER_PRIMARY = createUniqueKey(com.myblog.schema.tables.Timer.TIMER, com.myblog.schema.tables.Timer.TIMER.ID);
 		public static final org.jooq.UniqueKey<com.myblog.schema.tables.records.UserRecord> KEY_USER_PRIMARY = createUniqueKey(com.myblog.schema.tables.User.USER, com.myblog.schema.tables.User.USER.USER_ID);
 		public static final org.jooq.UniqueKey<com.myblog.schema.tables.records.UserBlogRecord> KEY_USER_BLOG_PRIMARY = createUniqueKey(com.myblog.schema.tables.UserBlog.USER_BLOG, com.myblog.schema.tables.UserBlog.USER_BLOG.BLOG_ID);
 	}

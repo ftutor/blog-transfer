@@ -1,37 +1,7 @@
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-18 13:14:50
-hint
-project --topLevelPackage com.myblog.transfer
-hint
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-23 20:26:46
 jpa setup --provider HIBERNATE --database MYSQL 
-hint
-hint web mvc
-web mvc setup
-web mvc all --package ~.web
-perform package
-perform eclipse
-// [failed] selenium test --controller ~.web.TestController
-perform tests
-perform package
-perform eclipse
-hint
-entity jpa --class ~.Timer --testAutomatically 
-hint
-field string --fieldName username 
-perform package
-perform eclipse
+// [failed] entity jpa --class com.myblog.transfer.Test --testAutomatically 
+// [failed] entity jpa --class com.myblog.transfer.ControllerTest --testAutomatically 
+entity jpa --class com.myblog.transfer.ControllerSimple --testAutomatically 
 q
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-18 15:54:31
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-18 22:59:04
-q
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-18 22:59:26
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-18 23:01:57
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-18 23:02:36
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-18 23:05:06
-// [failed] hint
-hint
-perform  package
-perform eclipse
-q
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-18 23:08:03
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-18 23:12:32
-perform eclipse
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-23 20:30:29

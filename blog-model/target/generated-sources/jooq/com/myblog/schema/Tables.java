@@ -24,6 +24,11 @@ public class Tables {
 	public static final com.myblog.schema.tables.Databasechangeloglock DATABASECHANGELOGLOCK = com.myblog.schema.tables.Databasechangeloglock.DATABASECHANGELOGLOCK;
 
 	/**
+	 * The table blog.timer
+	 */
+	public static final com.myblog.schema.tables.Timer TIMER = com.myblog.schema.tables.Timer.TIMER;
+
+	/**
 	 * The table blog.user
 	 */
 	public static final com.myblog.schema.tables.User USER = com.myblog.schema.tables.User.USER;

@@ -11,7 +11,7 @@ package com.myblog.schema;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Blog extends org.jooq.impl.SchemaImpl {
 
-	private static final long serialVersionUID = -181470490;
+	private static final long serialVersionUID = -1144558786;
 
 	/**
 	 * The singleton instance of <code>blog</code>
@@ -36,6 +36,7 @@ public class Blog extends org.jooq.impl.SchemaImpl {
 		return java.util.Arrays.<org.jooq.Table<?>>asList(
 			com.myblog.schema.tables.Databasechangelog.DATABASECHANGELOG,
 			com.myblog.schema.tables.Databasechangeloglock.DATABASECHANGELOGLOCK,
+			com.myblog.schema.tables.Timer.TIMER,
 			com.myblog.schema.tables.User.USER,
 			com.myblog.schema.tables.UserBlog.USER_BLOG);
 	}
