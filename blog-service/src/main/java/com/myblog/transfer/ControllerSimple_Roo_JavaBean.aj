@@ -3,17 +3,17 @@
 
 package com.myblog.transfer;
 
-import com.myblog.schema.Blog;
 import com.myblog.transfer.ControllerSimple;
+import org.springframework.mail.MailSender;
 
 privileged aspect ControllerSimple_Roo_JavaBean {
     
-    public Blog ControllerSimple.getBlog() {
-        return this.blog;
+    public MailSender ControllerSimple.getMailSender() {
+        return this.mailSender;
     }
     
-    public void ControllerSimple.setBlog(Blog blog) {
-        this.blog = blog;
+    public void ControllerSimple.setMailSender(MailSender mailSender) {
+        this.mailSender = mailSender;
     }
     
 }
