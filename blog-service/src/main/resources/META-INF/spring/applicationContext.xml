@@ -47,7 +47,7 @@
         <context:exclude-filter expression=".*_Roo_.*" type="regex"/>
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
-    <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
+   <!--   <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
           <property name="username" value="${database.username}"/>
@@ -60,13 +60,19 @@
         <property name="minEvictableIdleTimeMillis" value="1800000"/>
         <property name="validationQuery" value="SELECT 1"/>
     </bean>
+    -->
+    <!-- Database used by the application -->
+  <bean id="appDS" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiName" value="java:comp/env/jdbc/appDS"/>
+    <property name="lookupOnStartup" value="true"/>
+  </bean>
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
         <property name="persistenceUnitName" value="persistenceUnit"/>
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="appDS"/>
     </bean>
     <bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
         <property name="host" value="${email.host}"/>
