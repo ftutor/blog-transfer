@@ -376,6 +376,26 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.6</version>
+                <executions>
+					<execution>
+						<!-- Generate a jetty.xml file that incorporates the database settings 
+							for this environment -->
+						<id>generate-jetty-xml</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.basedir}/target/jetty</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/src/jetty</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
@@ -454,11 +474,39 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>8.1.4.v20120524</version>
                 <configuration>
+                	<scanIntervalSeconds>10</scanIntervalSeconds>
+					<stopKey>foo</stopKey>
+					<stopPort>9999</stopPort>
+					<jettyConfig>${project.basedir}/target/jetty/jetty.xml</jettyConfig>
+					<jettyEnvXml>${project.basedir}/target/jetty/jetty-env.xml</jettyEnvXml>
                     <webAppConfig>
                         <contextPath>/${project.name}</contextPath>
                     </webAppConfig>
                 </configuration>
             </plugin>
+            
+            <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0-alpha-2</version>
+				<executions>
+					<execution>
+						<!-- Read the DB configuration for this environment from the sop-model 
+							module so we can use them in our application server configuration -->
+						<id>read-db-config</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+						<configuration>
+							<quiet>true</quiet>
+							<files>
+								<file>../blog-model/src/main/resources/liquibase/liquibase.properties</file>
+							</files>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
     </build>
 </project>
