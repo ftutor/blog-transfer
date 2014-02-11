@@ -63,19 +63,32 @@
  <!-- <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
     <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
   </bean> -->
+  
+  <!-- View resolvers: try to resolve any view as a bean first and default 
+		to the base name of a mustache template -->
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0" />
+	</bean>
+  <!-- View capable of converting any POJO to JSON format -->
+  <bean id="jsonView"
+		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
   <bean id="viewResolver" class="org.springframework.web.servlet.view.mustache.MustacheViewResolver">
+   <property name="cache" value="false" />
     <property name="prefix" value="WEB-INF/mustache/" />
     <property name="suffix" value=".mustache" />
     <property name="templateLoader">
       	<bean class="org.springframework.web.servlet.view.mustache.MustacheTemplateLoader" />
     </property>
+    <property name="order" value="1" />
 	</bean>
 	<bean id="messageInterceptor" class="org.springframework.web.servlet.i18n.MustacheMessageInterceptor">
     <property name="messageSource" ref="messageSource" />
     <property name="localeResolver" ref="localeResolver" />
     <!--<property name="messageKey" value="i18n"/> default is 'i18n'-->
-    <property name="viewResolver" ref="viewResolver"/> 
+    <!-- <property name="viewResolver" ref="viewResolver"/>  -->
 	</bean>
+	
+	
     <bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer" id="tilesConfigurer">
     <property name="definitions">
       <list>
