@@ -65,7 +65,8 @@
     
     <servlet-mapping>
         <servlet-name>blog-service</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>*.mustache</url-pattern>
+        <url-pattern>*.json</url-pattern>
     </servlet-mapping>
     
     <session-config>

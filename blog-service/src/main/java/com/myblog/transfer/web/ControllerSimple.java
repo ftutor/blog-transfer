@@ -6,8 +6,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,8 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myblog.schema.tables.records.UserBlogRecord;
 import com.myblog.transfer.bo.GetBlogItemList;
 
-@RooJavaBean
-@RooToString
 @Controller
 public class ControllerSimple {
 
