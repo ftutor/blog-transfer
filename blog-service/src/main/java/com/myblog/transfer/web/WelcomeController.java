@@ -22,7 +22,8 @@ public class WelcomeController {
 	 * This is an example of a controller method that interprets a Mustache
 	 * template and returns it to the client as HTML.
 	 */
-	@RequestMapping(value = "/welcome.mustache", method = RequestMethod.GET)
+	@RequestMapping(value = "/welcome.mustache", method = { RequestMethod.GET,
+			RequestMethod.POST })
 	public ModelAndView get(HttpServletRequest req, Principal principal)
 			throws Exception {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -41,5 +42,14 @@ public class WelcomeController {
 		model.put("animals", new String[] { "Gnu", "Yak", "Bison", "Yeti" });
 		return new ModelAndView("jsonView", model);
 	}
+	//
+	// @RequestMapping(value = "/login.mustache", method = RequestMethod.GET)
+	// public ModelAndView login(HttpServletRequest req, Principal principal)
+	// throws Exception {
+	// Map<String, Object> model = new HashMap<String, Object>();
+	// model.put("colors", "RED");
+	// logger.info("contend of model:" + model.get("colors"));
+	// return new ModelAndView("login", model);
+	// }
 
 }

@@ -63,7 +63,7 @@
  <!-- <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
     <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
   </bean> -->
-  
+  <mvc:default-servlet-handler/>
   <!-- View resolvers: try to resolve any view as a bean first and default 
 		to the base name of a mustache template -->
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">

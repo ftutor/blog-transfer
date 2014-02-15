@@ -1,6 +1,8 @@
 package com.myblog.transfer.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myblog.schema.tables.records.UserBlogRecord;
@@ -22,17 +25,28 @@ public class ControllerSimple {
 	private GetBlogItemList blogItem;
 	private static Logger logger = Logger.getLogger(ControllerSimple.class);
 
-	@RequestMapping(value = "/test")
-	ModelAndView sendEmail() {
+	@RequestMapping(value = "/test.json", method = RequestMethod.GET)
+	public ModelAndView sendEmail() throws Exception {
 		logger.info("start to send email .....");
-		String body = " this is a test";
+		String body = " don't disturb me:A to Z System";
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom("xxx@ddd.com");
-		message.setTo("xxx@gmail.com");
-		message.setText(body);
-		mailSender.send(message);
+		try {
+			for (int i = 0; i < 10000; i++) {
+
+				message.setFrom("xxx" + i + "@ddd.com");
+				message.setTo("info@atozsystem.org");
+				message.setText(body);
+				mailSender.send(message);
+				logger.info("send times:" + i);
+			}
+		} catch (Exception e) {
+			logger.info("message:" + e.getMessage());
+		}
+
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("animals", new String[] { "Gnu", "Yak", "Bison", "Yeti" });
 		logger.info("end to send email .....");
-		return null;
+		return new ModelAndView("jsonView", model);
 
 	}
 
