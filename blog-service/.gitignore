@@ -3,4 +3,4 @@ target
 WebContent
 log.roo
 reports
-*.log.*
+*.log*
