@@ -1,7 +1,6 @@
 package com.myblog.transfer.web;
 
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myblog.ControllerSupport;
+
 @Controller
-public class WelcomeController {
+public class WelcomeController extends ControllerSupport {
 
 	private static final Logger logger = Logger
 			.getLogger(WelcomeController.class);
@@ -26,9 +27,11 @@ public class WelcomeController {
 			RequestMethod.POST })
 	public ModelAndView get(HttpServletRequest req, Principal principal)
 			throws Exception {
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("colors", "RED");
-		logger.info("contend of model:" + model.get("colors"));
+		Map<String, Object> model = newModel(req);
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		model.put("username", username);
+		model.put("password", password);
 		return new ModelAndView("welcome", model);
 	}
 
@@ -38,18 +41,19 @@ public class WelcomeController {
 	@RequestMapping(value = "/animals.json", method = RequestMethod.GET)
 	public ModelAndView getAnimals(HttpServletRequest req, Principal principal)
 			throws Exception {
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = newModel(req);
 		model.put("animals", new String[] { "Gnu", "Yak", "Bison", "Yeti" });
 		return new ModelAndView("jsonView", model);
 	}
-	//
-	// @RequestMapping(value = "/login.mustache", method = RequestMethod.GET)
-	// public ModelAndView login(HttpServletRequest req, Principal principal)
-	// throws Exception {
-	// Map<String, Object> model = new HashMap<String, Object>();
-	// model.put("colors", "RED");
-	// logger.info("contend of model:" + model.get("colors"));
-	// return new ModelAndView("login", model);
-	// }
+
+	@RequestMapping(value = "/login.mustache", method = RequestMethod.GET)
+	public ModelAndView login(HttpServletRequest req, Principal principal)
+			throws Exception {
+		Map<String, Object> model = newModel(req);
+		model.put("username", "ftutor");
+		model.put("password", "opera");
+		logger.info("contend of model:" + model.get("colors"));
+		return new ModelAndView("login", model);
+	}
 
 }
