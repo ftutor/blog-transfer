@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
@@ -20,11 +21,17 @@ abstract public class BlogFactory {
 
 	abstract protected void execute(DSLContext dsl);
 
-	public void execute() {
+	private final static Logger logger = Logger.getLogger(BlogFactory.class);
+
+	public boolean execute() {
 		Connection conn = DataSourceUtils.getConnection(dataSource);
 		DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
 		try {
 			execute(create);
+			return true;
+		} catch (Exception e) {
+			logger.error("an error happens during jooq executes", e);
+			return false;
 		} finally {
 			if (conn != null) {
 				try {
