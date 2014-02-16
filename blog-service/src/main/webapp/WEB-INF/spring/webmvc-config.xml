@@ -25,6 +25,7 @@
     </mvc:interceptors>
 
     <!-- Selects a static view for rendering without the need for an explicit controller -->
+    <mvc:view-controller path="/login"/>
     <mvc:view-controller path="/" view-name="index"/>
     <mvc:view-controller path="/uncaughtException"/>
     <mvc:view-controller path="/resourceNotFound"/>
@@ -67,23 +68,22 @@
   <!-- View resolvers: try to resolve any view as a bean first and default 
 		to the base name of a mustache template -->
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<property name="order" value="0" />
+		<property name="order" value="0"/>
 	</bean>
   <!-- View capable of converting any POJO to JSON format -->
-  <bean id="jsonView"
-		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
-  <bean id="viewResolver" class="org.springframework.web.servlet.view.mustache.MustacheViewResolver">
-   <property name="cache" value="false" />
-    <property name="prefix" value="WEB-INF/mustache/" />
-    <property name="suffix" value=".mustache" />
+  <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" id="jsonView"/>
+  <bean class="org.springframework.web.servlet.view.mustache.MustacheViewResolver" id="viewResolver">
+   <property name="cache" value="false"/>
+    <property name="prefix" value="WEB-INF/mustache/"/>
+    <property name="suffix" value=".mustache"/>
     <property name="templateLoader">
-      	<bean class="org.springframework.web.servlet.view.mustache.MustacheTemplateLoader" />
+      	<bean class="org.springframework.web.servlet.view.mustache.MustacheTemplateLoader"/>
     </property>
-    <property name="order" value="1" />
+    <property name="order" value="1"/>
 	</bean>
-	<bean id="messageInterceptor" class="org.springframework.web.servlet.i18n.MustacheMessageInterceptor">
-    <property name="messageSource" ref="messageSource" />
-    <property name="localeResolver" ref="localeResolver" />
+	<bean class="org.springframework.web.servlet.i18n.MustacheMessageInterceptor" id="messageInterceptor">
+    <property name="messageSource" ref="messageSource"/>
+    <property name="localeResolver" ref="localeResolver"/>
     <!--<property name="messageKey" value="i18n"/> default is 'i18n'-->
     <!-- <property name="viewResolver" ref="viewResolver"/>  -->
 	</bean>

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myblog.ControllerSupport;
-import com.myblog.transfer.bo.LoginBo;
 
 @Controller
 public class WelcomeController extends ControllerSupport {
@@ -33,22 +32,7 @@ public class WelcomeController extends ControllerSupport {
 	public ModelAndView get(HttpServletRequest req, Principal principal)
 			throws Exception {
 		Map<String, Object> model = newModel(req);
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
-		LoginBo login = applicationContext.getBean(LoginBo.class);
-		login.setUsername(username);
-		login.setPasswd(password);
-		if (login.execute() && login.isValidate()) {
-			model.put("username", username);
-			model.put("password", password);
-			return new ModelAndView("welcome", model);
-		} else {
-			/*
-			 * return new ModelAndView(new RedirectView("login.mustache")) works
-			 * fine
-			 */
-			return new ModelAndView("login");
-		}
+		return new ModelAndView("welcome", model);
 
 	}
 

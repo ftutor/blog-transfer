@@ -11,6 +11,8 @@ public class ControllerSupport {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("contextPath", re.getContextPath());
+		map.put("username", re.getSession().getAttribute("username"));
+		map.put("password", re.getSession().getAttribute("password"));
 		return map;
 	}
 }
