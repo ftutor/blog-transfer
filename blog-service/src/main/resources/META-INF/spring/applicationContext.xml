@@ -73,8 +73,19 @@
     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
         <property name="persistenceUnitName" value="persistenceUnit"/>
         <property name="dataSource" ref="appDS"/>
+        <property name="packagesToScan" value="com.myblog" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true"/>
+                <property name="generateDdl" value="false"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.DerbyDialect"/>
+            </bean>
+        </property>
     </bean>
     <bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
         <property name="host" value="${email.host}"/>
     </bean>
+    
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
 </beans>
