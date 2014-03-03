@@ -11,24 +11,24 @@ import com.myblog.transfer.dao.UserInfoDAO;
 @Component
 public class UserInfoBo extends BlogFactory {
 
-	private String userName;
-	private UserRecord staffInfo;
-	@Autowired
-	private UserInfoDAO dao;
+    private String userName;
+    private UserRecord staffInfo;
+    @Autowired
+    private UserInfoDAO dao;
 
-	@Override
-	protected void execute(DSLContext dsl) {
-		// TODO Auto-generated method stub
+    @Override
+    public void execute(DSLContext dsl) throws Exception {
+        // TODO Auto-generated method stub
 
-		staffInfo = dao.getUserByUserName(dsl, userName);
-	}
+        staffInfo = dao.getUserByUserName(dsl, userName);
+    }
 
-	public void setUserName(String username) {
-		this.userName = username;
-	}
+    public void setUserName(String username) {
+        this.userName = username;
+    }
 
-	public UserRecord getStaffInfo() {
-		return staffInfo;
-	}
+    public UserRecord getStaffInfo() {
+        return staffInfo;
+    }
 
 }

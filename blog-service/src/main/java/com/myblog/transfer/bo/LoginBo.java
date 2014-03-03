@@ -10,30 +10,30 @@ import com.myblog.transfer.dao.ReadingBlogDAO;
 @Component
 public class LoginBo extends BlogFactory {
 
-	private boolean isValidate = false;
-	@Autowired
-	private ReadingBlogDAO dao;
-	private String username;
-	private String passwd;
+    private boolean isValidate = false;
+    @Autowired
+    private ReadingBlogDAO dao;
+    private String username;
+    private String passwd;
 
-	@Override
-	protected void execute(DSLContext dsl) {
-		// TODO Auto-generated method stub
+    @Override
+    public void execute(DSLContext dsl) throws Exception {
+        // TODO Auto-generated method stub
 
-		isValidate = dao.loginCheck(dsl, username, passwd);
+        isValidate = dao.loginCheck(dsl, username, passwd);
 
-	}
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
-	}
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
 
-	public boolean isValidate() {
-		return isValidate;
-	}
+    public boolean isValidate() {
+        return isValidate;
+    }
 
 }

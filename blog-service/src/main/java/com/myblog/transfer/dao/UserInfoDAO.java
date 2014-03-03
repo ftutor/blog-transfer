@@ -13,7 +13,7 @@ import com.myblog.schema.tables.records.UserRecord;
 
 @Component
 public class UserInfoDAO {
-    private static final Logger logger = Logger.getLogger(UserInfoDAO.class);
+    private static final Logger LOGGER = Logger.getLogger(UserInfoDAO.class);
 
     public UserRecord getUserByUserName(DSLContext dsl, String username)
             throws DataAccessException {
@@ -32,7 +32,8 @@ public class UserInfoDAO {
                         new Timestamp(System.currentTimeMillis()))
                 .set(USER.LAST_LOGIN, new Timestamp(System.currentTimeMillis()))
                 .execute();
-        throw new RuntimeException("failed to add new user");
+        LOGGER.info("ADD NEW USER FINISHED");
+        // throw new RuntimeException("failed to add new user");
 
     }
 }

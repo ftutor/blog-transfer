@@ -13,23 +13,23 @@ import com.myblog.transfer.dao.ReadingBlogDAO;
 
 @Component
 public class GetBlogItemList extends BlogFactory {
-	@Autowired
-	private ReadingBlogDAO readBlog;
-	private List<UserBlogRecord> allBlog;
-	private static Logger logger = Logger.getLogger(GetBlogItemList.class);
+    @Autowired
+    private ReadingBlogDAO readBlog;
+    private List<UserBlogRecord> allBlog;
+    private static Logger logger = Logger.getLogger(GetBlogItemList.class);
 
-	@Override
-	protected void execute(DSLContext dsl) {
-		// TODO Auto-generated method stub
+    @Override
+    public void execute(DSLContext dsl) throws Exception {
+        // TODO Auto-generated method stub
 
-		logger.info("start to execute GetBlogItemList....");
-		allBlog = readBlog.getBlog(dsl);
-		logger.info("end to execute GetBlogItemList....");
-		logger.info("all blog number:" + allBlog.size());
-	}
+        logger.info("start to execute GetBlogItemList....");
+        allBlog = readBlog.getBlog(dsl);
+        logger.info("end to execute GetBlogItemList....");
+        logger.info("all blog number:" + allBlog.size());
+    }
 
-	public List<UserBlogRecord> getAllBlog() {
-		return allBlog;
-	}
+    public List<UserBlogRecord> getAllBlog() {
+        return allBlog;
+    }
 
 }

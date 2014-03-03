@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
@@ -69,12 +71,16 @@ public class ControllerSimple extends ControllerSupport {
     }
 
     @RequestMapping(value = "/add.json", method = RequestMethod.GET)
-    ModelAndView addNewUser() {
+    ModelAndView addNewUser(HttpServletRequest req) {
         logger.info("start to addNewUser .....");
-        addNewUser.execute();
+        Map<String, Object> model = newModel(req);
+        if (addNewUser.execute()) {
 
-        logger.info("end to addNewUser .....");
-        return new ModelAndView("jsonView", null);
+            logger.info("end to ControllerSimple aa .....");
+        } else {
+            logger.info("exceptions to ControllerSimple aa .....");
+        }
+        return new ModelAndView("jsonView", model);
 
     }
 }
