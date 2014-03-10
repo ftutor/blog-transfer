@@ -7,6 +7,7 @@ import org.jooq.DSLContext;
 import org.jooq.impl.DefaultDSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 abstract public class BlogFactory {
@@ -20,10 +21,8 @@ abstract public class BlogFactory {
 
     private final static Logger logger = Logger.getLogger(BlogFactory.class);
 
-    // @Transactional
+    @Transactional
     public boolean execute() {
-        // Connection conn = DataSourceUtils.getConnection(dataSource);
-        // DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
         try {
             execute(create);
             return true;
@@ -31,17 +30,6 @@ abstract public class BlogFactory {
             throw new RuntimeException("an error happens during jooq executes",
                     e);
 
-        } finally {
-            // create
-            // if (conn != null) {
-            // try {
-            // conn.close();
-            // } catch (SQLException e) {
-            // // TODO Auto-generated catch block
-            // e.printStackTrace();
-            // }
-            // }
         }
-        // return false;
     }
 }

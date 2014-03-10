@@ -33,7 +33,7 @@ public class UserInfoDAO {
                 .set(USER.LAST_LOGIN, new Timestamp(System.currentTimeMillis()))
                 .execute();
         LOGGER.info("ADD NEW USER FINISHED");
-        // throw new RuntimeException("failed to add new user");
+        throw new RuntimeException("failed to add new user");
 
     }
 }
