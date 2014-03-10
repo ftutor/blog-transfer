@@ -48,6 +48,14 @@
             <name>Spring Roo Repository</name>
             <url>http://spring-roo-repository.springsource.org/release</url>
         </pluginRepository>
+        <pluginRepository>
+            <id>sonatype-releases</id>
+            <url>http://oss.sonatype.org/content/repositories/releases</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>clojars.org</id>
+            <url>http://clojars.org/repo</url>
+        </pluginRepository>
     </pluginRepositories>
     <dependencies>
         <dependency>
@@ -351,7 +359,28 @@
         </dependency>
     </dependencies>
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                 <filtering>true</filtering>
+             </resource>
+          </resources>
         <plugins>
+            <plugin>
+                <groupId>com.code54.mojo</groupId>
+                <artifactId>buildversion-plugin</artifactId>
+                <version>1.0.3</version>
+                <configuration>
+                    <tstampFormat>yyyy-MM-dd'T'HH:mm:ss.SSSZ</tstampFormat>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
