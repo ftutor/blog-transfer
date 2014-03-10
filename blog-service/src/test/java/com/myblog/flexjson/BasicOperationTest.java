@@ -59,14 +59,14 @@ public class BasicOperationTest {
         LOG.info("output:" + BasicOperation.serializeIncludeMore(person));
     }
 
-    @Ignore
+    // @Ignore
     @Test
     public void testSerializeExclude() {
         LOG.info("Original:" + person.toString());
         LOG.info("output:" + BasicOperation.serializeExclude(person));
     }
 
-    // @Ignore
+    @Ignore
     @Test
     public void testSerializeTransformer() {
         LOG.info("Original:" + person.toString());

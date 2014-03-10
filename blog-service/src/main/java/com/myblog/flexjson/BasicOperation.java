@@ -55,8 +55,7 @@ public class BasicOperation {
     public static <T> String serializeExclude(T p) {
 
         JSONSerializer serializer = new JSONSerializer();
-        return serializer.include("phoneNumbers").include("addresses")
-                .rootName("people").exclude("*.class").serialize(p);
+        return serializer.rootName("people").exclude("*.class").serialize(p);
 
         // return serializer.include("phoneNumbers","addresses")
         // .serialize(p);
