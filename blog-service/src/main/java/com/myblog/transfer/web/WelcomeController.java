@@ -57,7 +57,7 @@ public class WelcomeController extends ControllerSupport {
     @RequestMapping(value = "/animals-entity", method = RequestMethod.GET)
     public ResponseEntity<String> getAnimalsEntity(HttpServletRequest req,
             Principal principal) throws Exception {
-        List<String> pList = Arrays.asList("Gnu", "Yak", "Bison", "Yeti");
+        List<String> pList = Arrays.asList("Gnu1", "Yak", "Bison", "Yeti");
 
         String body = new JSONSerializer().exclude("*.class").serialize(pList);
         return new ResponseEntity<String>(body, getJsonHeaders(), HttpStatus.OK);
