@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,6 +62,15 @@ public class WelcomeController extends ControllerSupport {
 
         String body = new JSONSerializer().exclude("*.class").serialize(pList);
         return new ResponseEntity<String>(body, getJsonHeaders(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/animals-entity-1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getAnimalsEntityA(HttpServletRequest req,
+            Principal principal) throws Exception {
+        List<String> pList = Arrays.asList("Gnu1", "Yak", "Bison", "Yeti");
+
+        String body = new JSONSerializer().exclude("*.class").serialize(pList);
+        return new ResponseEntity<String>(body, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/login.mustache", method = RequestMethod.GET)
