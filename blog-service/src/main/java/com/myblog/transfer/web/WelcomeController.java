@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myblog.ControllerSupport;
@@ -71,6 +72,16 @@ public class WelcomeController extends ControllerSupport {
 
         String body = new JSONSerializer().exclude("*.class").serialize(pList);
         return new ResponseEntity<String>(body, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/animals-body", method = RequestMethod.GET)
+    @ResponseBody
+    public String getAnimalsBody(HttpServletRequest req, Principal principal)
+            throws Exception {
+        List<String> pList = Arrays.asList("Gnu1", "Yak", "Bison", "Yeti");
+
+        String body = new JSONSerializer().exclude("*.class").serialize(pList);
+        return body;
     }
 
     @RequestMapping(value = "/login.mustache", method = RequestMethod.GET)
