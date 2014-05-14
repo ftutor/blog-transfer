@@ -70,4 +70,10 @@
         <constructor-arg index="7"><null /></constructor-arg>
     </bean>
     <bean id="user" class="com.myblog.transaction.BlogServiceImp" />
+    <!-- 
+    <bean id ="student" name="student" class="com.myblog.transfer.dao.Student">
+        <constructor-arg index="0" value="20"/>
+        <constructor-arg index="1" value="fang"/>
+  </bean>
+   -->
 </beans>
