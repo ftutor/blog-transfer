@@ -13,7 +13,7 @@
 
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources -->
     <mvc:resources location="/, classpath:/META-INF/web-resources/" mapping="/resources/**"/> 
-	<!-- <mvc:resources location="/" mapping="/resources/*.mustache"/>  -->
+    <!-- <mvc:resources location="/" mapping="/resources/*.mustache"/>  -->
     <!-- Allows for mapping the DispatcherServlet to "/" by forwarding static resource 
     requests to the container's default Servlet -->
     <mvc:default-servlet-handler/>
@@ -62,10 +62,10 @@
     <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"/>
   <mvc:default-servlet-handler/>
   <!-- View resolvers: try to resolve any view as a bean first and default 
-		to the base name of a mustache template -->
-	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<property name="order" value="1"/>
-	</bean>
+        to the base name of a mustache template -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="1"/>
+    </bean>
   <!-- View capable of converting any POJO to JSON format -->
   <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" id="jsonView"/>
   <bean class="org.springframework.web.servlet.view.mustache.MustacheViewResolver" id="viewResolver">
@@ -73,17 +73,17 @@
     <property name="prefix" value="WEB-INF/mustache/"/>
     <property name="suffix" value=".mustache"/>
     <property name="templateLoader">
-      	<bean class="org.springframework.web.servlet.view.mustache.MustacheTemplateLoader"/>
+        <bean class="org.springframework.web.servlet.view.mustache.MustacheTemplateLoader"/>
     </property>
     <property name="order" value="2"/>
-	</bean>
-	<bean class="org.springframework.web.servlet.i18n.MustacheMessageInterceptor" id="messageInterceptor">
+    </bean>
+    <bean class="org.springframework.web.servlet.i18n.MustacheMessageInterceptor" id="messageInterceptor">
     <property name="messageSource" ref="messageSource"/>
     <property name="localeResolver" ref="localeResolver"/>
     <!--<property name="messageKey" value="i18n"/> default is 'i18n'-->
     <!-- <property name="viewResolver" ref="viewResolver"/>  -->
-	</bean>
-	
+    </bean>
+    
   <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
         <property name="order" value="0"/>

@@ -57,6 +57,7 @@
     <url-pattern>*.json</url-pattern>
     -->
   </servlet-mapping>
+
   <servlet>
     <servlet-name>blog-service-customer</servlet-name>
     <servlet-class>com.myblog.transfer.web.CustomerHttpServlet</servlet-class>
@@ -64,7 +65,7 @@
   <servlet-mapping>
     <servlet-name>blog-service-customer</servlet-name>
     <url-pattern>/Demo1</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>  
   <session-config>
     <session-timeout>10</session-timeout>
   </session-config>

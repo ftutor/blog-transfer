@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myblog.ControllerSupport;
-import com.myblog.transfer.dao.Student;
 
 import flexjson.JSONSerializer;
 
@@ -32,8 +31,6 @@ public class WelcomeController extends ControllerSupport {
             .getLogger(WelcomeController.class);
     @Autowired
     private ApplicationContext applicationContext;
-    @Autowired
-    private Student student;
 
     /**
      * This is an example of a controller method that interprets a Mustache
@@ -63,7 +60,6 @@ public class WelcomeController extends ControllerSupport {
     public ResponseEntity<String> getAnimalsEntity(HttpServletRequest req,
             Principal principal) throws Exception {
         List<String> pList = Arrays.asList("Gnu1", "Yak", "Bison", "Yeti");
-        logger.info("Logger:" + student.toString());
         String body = new JSONSerializer().exclude("*.class").serialize(pList);
         return new ResponseEntity<String>(body, getJsonHeaders(), HttpStatus.OK);
     }
