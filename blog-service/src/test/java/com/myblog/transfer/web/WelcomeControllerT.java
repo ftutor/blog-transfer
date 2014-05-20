@@ -10,22 +10,21 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
-import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @ContextConfiguration(locations = {
         "file:src/main/webapp/WEB-INF/spring/webmvc-config.xml",
-        "classpath:/META-INF/spring/applicationContext.xml" })
+        "classpath:/META-INF/spring/applicationContext.xml"
+// "classpath:/META-INF/spring/applicationContext-security.xml"
+})
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-@EnableWebMvc
 public class WelcomeControllerT {
 
     @Autowired
@@ -42,9 +41,6 @@ public class WelcomeControllerT {
 
     protected MockMvc mockMvc;
 
-    @Autowired
-    protected MockHttpServletRequest request;
-
     protected TestUtils testUtils;
 
     /**
@@ -57,6 +53,13 @@ public class WelcomeControllerT {
     public void setUp() {
         testUtils = new TestUtils();
         this.mockMvc = webAppContextSetup(this.wac).build();
+        // applicationContext.getAutowireCapableBeanFactory()
+        // .autowireBeanProperties(handlerAdapter,
+        // AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, true);
+        // applicationContext.getAutowireCapableBeanFactory()
+        // .autowireBeanProperties(handlerMapping,
+        // AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, true);
+
     }
 
     @Test

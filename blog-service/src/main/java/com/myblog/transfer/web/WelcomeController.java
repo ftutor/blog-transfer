@@ -29,8 +29,8 @@ public class WelcomeController extends ControllerSupport {
 
     private static final Logger logger = Logger
             .getLogger(WelcomeController.class);
-    @Autowired
-    private ApplicationContext applicationContext;
+   // @Autowired
+   // private ApplicationContext applicationContext;
 
     /**
      * This is an example of a controller method that interprets a Mustache
