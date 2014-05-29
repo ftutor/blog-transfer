@@ -1,1 +1,0 @@
-2014-05-28 21:17:50,059 [main] INFO  com.opera.DataSourceConfig - PATH:/META-INF/spring/sp_db_mapping.properties

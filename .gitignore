@@ -1,0 +1,6 @@
+*.class#
+target
+WebContent
+log.roo
+reports
+*.log*
