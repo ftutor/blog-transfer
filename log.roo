@@ -8,3 +8,6 @@ web mvc all --package ~
 web mvc finder all
 logging setup --level INFO 
 dependency add --groupId com.blog.model --artifactId blog-model --version  0.1.0.BUILD-SNAPSHOT
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-28 16:31:30
+q
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-28 16:32:35

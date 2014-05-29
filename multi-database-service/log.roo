@@ -1,0 +1,19 @@
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-28 16:33:10
+project --topLevelPackage com.opera
+jpa setup --provider HIBERNATE --database MYSQL 
+entity jpa --class com.opera.UserDAO --testAutomatically 
+web mvc setup
+perform tests
+perform package
+perform eclipse
+quit
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-28 16:36:36
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-28 19:33:20
+q
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-28 20:02:44
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-28 20:07:09
+q
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-28 20:07:24
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-29 10:48:48
+q
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-29 10:52:11
